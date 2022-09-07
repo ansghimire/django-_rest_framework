@@ -29,6 +29,7 @@ class CompanySerializer(serializers.ModelSerializer):
     def validate_shareholders(self,shareholders):
         if len(shareholders) <= 0:
             raise serializers.ValidationError("shareholders null data not accepted")
+        return shareholders
 
 
     # def create(self, validated_data):

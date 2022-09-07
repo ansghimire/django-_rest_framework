@@ -12,24 +12,16 @@ class CompanyViewSet(ModelViewSet):
     serializer_class = CompanySerializer
 
     def create(self, request, *args, **kwargs):
-        # print(request.data)
-
         serializer = self.serializer_class(data=request.data)
         '''
         Paila validate hanem
         '''
         serializer.is_valid(raise_exception=True)
-        '''
-        shareholder ma khali kinw ako malia tha6oinw so data halnw paryo ( validatio serailizer batw bhayo)
-        '''
-        serializer.validated_data["shareholders"] = request.data["shareholders"]
-
         shareholders = serializer.validated_data.pop('shareholders',[])
         id= []
         for shareholder in shareholders:
             data =  Shareholders.objects.create(**shareholder)
             id.append(data.id)
-        serializer.validated_data["shareholders"] = id
         '''
         yo simple cha buj6au affai
         '''
