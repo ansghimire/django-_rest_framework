@@ -25,10 +25,10 @@ class CompanyViewSet(ModelViewSet):
         '''
         yo simple cha buj6au affai
         '''
-        company = Company()
-        company.__dict__.update(serializer.validated_data)
-        company.save()
-        company.shareholders.set(id)
+        c1:company = Company()
+        c1:company.__dict__.update(serializer.validated_data)
+        c1.save()
+        c1.shareholders.set(id)
         return Response(request.data, status=status.HTTP_201_CREATED)
 
 
